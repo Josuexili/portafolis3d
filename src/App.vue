@@ -13,7 +13,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import EscenaPrincipal from './components/EscenaPrincipal.vue'
-import PerformanceHud from './components/PerformanceHud.vue'
+import PerformanceHud from './components/performanceHud.vue'
 
 const nom = 'Josuè González'
 const mostrarPanel = ref(false)
