@@ -8,12 +8,6 @@ AFRAME.registerComponent('enter-planet', {
     this.hits = 0;
     this.cooldown = false;
 
-    console.log(
-      `🟢 [enter-planet] Component inicialitzat per`,
-      this.el.id || this.el
-    );
-
-    // 📡 Detecta impactes de làsers (event emès pel laser-shooter)
     this.el.addEventListener('hit-by-laser', (e) => {
       this.registerHit(e.detail?.laser);
     });
@@ -23,21 +17,15 @@ AFRAME.registerComponent('enter-planet', {
     this.hits++;
     this.flash();
 
-    console.log(
-      `🎯 Impacte #${this.hits} al portal ${this.el.id || '(sense id)'}`
-    );
-
-    // 🔔 Envia esdeveniment global al HUD per actualitzar el comptador
     window.dispatchEvent(new CustomEvent('portal-hit'));
 
-    // 🚀 Cada X impactes, activa el portal
     if (this.hits % this.data.hitsRequired === 0 && !this.cooldown) {
       this.cooldown = true;
       this.activatePortal();
+
       setTimeout(() => (this.cooldown = false), 2000);
     }
 
-    // 💨 Elimina el làser després d’un impacte per netejar l’escena
     if (laser && laser.parentNode) {
       setTimeout(() => {
         if (laser.parentNode) laser.parentNode.removeChild(laser);
@@ -52,7 +40,6 @@ AFRAME.registerComponent('enter-planet', {
   },
 
   activatePortal() {
-    console.log(`✨ [enter-planet] Activant portal ${this.el.id || ''}`);
     this.el.setAttribute('material', {
       color: '#00ffff',
       emissive: '#00ffff',
@@ -67,14 +54,13 @@ AFRAME.registerComponent('enter-planet', {
       to: '1.3 1.3 1.3',
     });
 
-    // 🌐 Obre pestanya després d’un curt retard
+    // 👍 NO OBRIM AUTOMÀTICAMENT → EVITEM BLOQUEIG
+    // En lloc d’això, mostrem un confirm:
     setTimeout(() => {
-      console.log('🌐 Obrint pestanya:', this.data.url);
-      try {
+      const acceptar = confirm('Has activat el portal. Vols entrar-hi ara?');
+
+      if (acceptar) {
         window.open(this.data.url, '_blank', 'noopener,noreferrer');
-        console.log('✅ Pestanya oberta correctament');
-      } catch (err) {
-        console.error('❌ Error obrint pestanya:', err);
       }
     }, 500);
   },
