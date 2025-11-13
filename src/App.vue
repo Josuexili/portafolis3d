@@ -2,7 +2,6 @@
   <div>
     <h1 class="title">Portafolis 3D – {{ nom }}</h1>
 
-    <!-- Monitor de rendiment -->
     <PerformanceHud />
 
     <div v-if="mostrarPanel" class="panel" v-html="panelText"></div>
@@ -27,5 +26,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Els teus estils aquí */
+/* Estils opcionals */
 </style>

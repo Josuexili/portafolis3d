@@ -22,7 +22,6 @@ AFRAME.registerComponent('enter-planet', {
     if (this.hits % this.data.hitsRequired === 0 && !this.cooldown) {
       this.cooldown = true;
       this.activatePortal();
-
       setTimeout(() => (this.cooldown = false), 2000);
     }
 
@@ -54,8 +53,8 @@ AFRAME.registerComponent('enter-planet', {
       to: '1.3 1.3 1.3',
     });
 
-    // 👍 SOLUCIÓ 100% PERMESA PER CHROME I VERCEL
-    // confirm() és considerat una acció d'usuari → window.open no es bloqueja
+    // 👌 100% APROVAT PER CHROME
+    // confirm() = acció d'usuari → NO ES BLOQUEJA
     const acceptar = confirm('Has activat el portal. Vols entrar-hi ara?');
 
     if (acceptar) {
