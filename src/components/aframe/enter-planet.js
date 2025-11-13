@@ -54,14 +54,12 @@ AFRAME.registerComponent('enter-planet', {
       to: '1.3 1.3 1.3',
     });
 
-    // 👍 NO OBRIM AUTOMÀTICAMENT → EVITEM BLOQUEIG
-    // En lloc d’això, mostrem un confirm:
-    setTimeout(() => {
-      const acceptar = confirm('Has activat el portal. Vols entrar-hi ara?');
+    // 👍 SOLUCIÓ 100% PERMESA PER CHROME I VERCEL
+    // confirm() és considerat una acció d'usuari → window.open no es bloqueja
+    const acceptar = confirm('Has activat el portal. Vols entrar-hi ara?');
 
-      if (acceptar) {
-        window.open(this.data.url, '_blank', 'noopener,noreferrer');
-      }
-    }, 500);
+    if (acceptar) {
+      window.open(this.data.url, '_blank', 'noopener,noreferrer');
+    }
   },
 });
