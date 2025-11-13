@@ -123,9 +123,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import 'aframe';
-import 'aframe-physics-system';
-import 'https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js';
 
 import './aframe/camera-physics-controls.js';
 import './aframe/random-fly.js';

@@ -2,10 +2,11 @@
   <div>
     <h1 class="title">Portafolis 3D – {{ nom }}</h1>
 
-    <!-- 📊 MONITOR DE RENDIMENT -->
+    <!-- Monitor de rendiment -->
     <PerformanceHud />
 
     <div v-if="mostrarPanel" class="panel" v-html="panelText"></div>
+
     <EscenaPrincipal ref="escena" />
   </div>
 </template>
@@ -21,6 +22,10 @@ const panelText = ref('')
 const escena = ref(null)
 
 onMounted(() => {
-  console.log('✅ App inicialitzada — Escena principal carregada correctament')
+  console.log('App inicialitzada — Escena principal carregada correctament')
 })
 </script>
+
+<style scoped>
+/* Els teus estils aquí */
+</style>
